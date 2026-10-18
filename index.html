@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        // Provide both getter and setter on window.fetch so browser extensions and interceptors
+        // can safely wrap/patch fetch without throwing "Cannot set property fetch of #<Window> which has only a getter"
+        try {
+          var _rawFetch = window.fetch;
+          var _activeFetch = _rawFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _activeFetch;
+            },
+            set: function(fn) {
+              _activeFetch = fn;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {
+          // Fallback if property is already frozen
+        }
+
+        // Catch and isolate uncaught exceptions originating from browser extensions
+        window.addEventListener('error', function(event) {
+          if (event && event.filename && event.filename.indexOf('chrome-extension://') !== -1) {
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+            if (typeof event.preventDefault === 'function') {
+              event.preventDefault();
+            }
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (event && event.reason && event.reason.stack && event.reason.stack.indexOf('chrome-extension://') !== -1) {
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+            if (typeof event.preventDefault === 'function') {
+              event.preventDefault();
+            }
+          }
+        }, true);
+      })();
+    </script>
+    <title>Rifat | CSE Student & Aspiring Data Scientist</title>
+    <meta name="description" content="Personal portfolio and learning journey of Rifat, Computer Science & Engineering student building skills in Python, Data Analysis, SQL, and Machine Learning." />
+    <meta property="og:title" content="Rifat | CSE Student & Aspiring Data Scientist" />
+    <meta property="og:description" content="Personal portfolio and learning journey of Rifat, Computer Science & Engineering student building skills in Python, Data Analysis, SQL, and Machine Learning." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

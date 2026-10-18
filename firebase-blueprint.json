@@ -1,0 +1,133 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A data science or software project in Rifat's portfolio",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Project title", "maxLength": 150 },
+        "shortDescription": { "type": "string", "description": "Brief summary", "maxLength": 300 },
+        "fullDescription": { "type": "string", "description": "Detailed explanation", "maxLength": 5000 },
+        "problemStatement": { "type": "string", "description": "Problem being solved", "maxLength": 2000 },
+        "datasetSource": { "type": "string", "description": "Dataset source or description", "maxLength": 1000 },
+        "tools": { "type": "array", "description": "List of technologies and libraries used" },
+        "methodology": { "type": "string", "description": "Approach and techniques", "maxLength": 3000 },
+        "keyFindings": { "type": "string", "description": "Outcomes and learnings", "maxLength": 3000 },
+        "category": { "type": "string", "description": "Domain/type of project", "maxLength": 80 },
+        "thumbnailUrl": { "type": "string", "description": "Cover image URL", "maxLength": 500 },
+        "githubUrl": { "type": "string", "description": "GitHub repository link", "maxLength": 500 },
+        "liveUrl": { "type": "string", "description": "Live demo link", "maxLength": 500 },
+        "notebookUrl": { "type": "string", "description": "Kaggle or Colab notebook link", "maxLength": 500 },
+        "creationDate": { "type": "string", "description": "Month/Year of project", "maxLength": 50 },
+        "featured": { "type": "boolean", "description": "Highlight on home section" },
+        "published": { "type": "boolean", "description": "Publicly visible vs admin draft" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of creation" }
+      },
+      "required": ["title", "shortDescription", "category", "published"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "Technical skill with honest learning status",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Skill name", "maxLength": 100 },
+        "category": { "type": "string", "description": "Category (Programming, Data Analysis, Databases, Visualization, Machine Learning, Tools)", "maxLength": 80 },
+        "status": { "type": "string", "description": "Learning status", "enum": ["Learning", "Practicing", "Completed"] },
+        "description": { "type": "string", "description": "Brief learning note or context", "maxLength": 500 },
+        "icon": { "type": "string", "description": "Lucide icon name identifier", "maxLength": 50 },
+        "order": { "type": "number", "description": "Display sort priority" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of update" }
+      },
+      "required": ["name", "category", "status"]
+    },
+    "LearningJourney": {
+      "title": "LearningJourney",
+      "description": "Milestone entry in chronological learning roadmap",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Topic or milestone title", "maxLength": 150 },
+        "topic": { "type": "string", "description": "Broad category or domain", "maxLength": 100 },
+        "description": { "type": "string", "description": "What is being learned", "maxLength": 2000 },
+        "date": { "type": "string", "description": "Target date or completion period", "maxLength": 60 },
+        "status": { "type": "string", "description": "Current status", "enum": ["Planned", "In Progress", "Completed"] },
+        "relatedResources": { "type": "string", "description": "Books, docs, courses", "maxLength": 1000 },
+        "githubUrl": { "type": "string", "description": "Practice repository link", "maxLength": 500 },
+        "order": { "type": "number", "description": "Display order" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of update" }
+      },
+      "required": ["title", "topic", "status", "date"]
+    },
+    "Certification": {
+      "title": "Certification",
+      "description": "Completed course, workshop, or certificate",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Certification name", "maxLength": 150 },
+        "issuingOrg": { "type": "string", "description": "Platform or institution", "maxLength": 150 },
+        "issueDate": { "type": "string", "description": "Date or period earned", "maxLength": 60 },
+        "credentialUrl": { "type": "string", "description": "Verification link", "maxLength": 500 },
+        "imageUrl": { "type": "string", "description": "Badge or certificate image URL", "maxLength": 500 },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of update" }
+      },
+      "required": ["name", "issuingOrg", "issueDate"]
+    },
+    "ProfileSettings": {
+      "title": "ProfileSettings",
+      "description": "Portfolio metadata, biography, and social links",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "description": "Full name", "maxLength": 100 },
+        "headline": { "type": "string", "description": "Short role and tag line", "maxLength": 200 },
+        "shortBio": { "type": "string", "description": "Hero intro statement", "maxLength": 1000 },
+        "fullAbout": { "type": "string", "description": "In-depth about text", "maxLength": 5000 },
+        "githubUrl": { "type": "string", "description": "GitHub profile URL", "maxLength": 500 },
+        "linkedinUrl": { "type": "string", "description": "LinkedIn profile URL", "maxLength": 500 },
+        "email": { "type": "string", "description": "Contact email address", "maxLength": 200 },
+        "phone": { "type": "string", "description": "Contact phone number", "maxLength": 50 },
+        "location": { "type": "string", "description": "City and country", "maxLength": 100 },
+        "kaggleUrl": { "type": "string", "description": "Kaggle profile URL", "maxLength": 500 },
+        "resumeUrl": { "type": "string", "description": "Link to PDF resume or CV", "maxLength": 500 },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of update" }
+      },
+      "required": ["fullName", "headline", "email"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized administrator record",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Admin email", "maxLength": 200 },
+        "role": { "type": "string", "description": "Role string", "enum": ["admin"] },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Data science projects collection"
+    },
+    "/skills/{skillId}": {
+      "schema": "Skill",
+      "description": "Technical skills collection"
+    },
+    "/learning_journey/{journeyId}": {
+      "schema": "LearningJourney",
+      "description": "Roadmap milestones collection"
+    },
+    "/certifications/{certId}": {
+      "schema": "Certification",
+      "description": "Verified certifications and courses"
+    },
+    "/settings/{settingId}": {
+      "schema": "ProfileSettings",
+      "description": "Global settings and public profile data"
+    },
+    "/admins/{userId}": {
+      "schema": "AdminUser",
+      "description": "Authorized admin users lookup"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Rifat - Data Science Portfolio",
+  "description": "Production-ready personal portfolio and learning journey for Rifat, CSE student and aspiring Data Scientist, featuring Firebase authentication, Firestore CMS, and project showcase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
